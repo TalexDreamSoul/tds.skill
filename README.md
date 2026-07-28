@@ -1,6 +1,6 @@
 # tds.skill
 
-TalexDreamSoul 的全局 Agent Skill，记录默认的内容、设计和 Cloudflare 部署约定。
+TalexDreamSoul 的全局 Agent Skill，用于约束内容表达、页面交付、Cloudflare 发布和 macOS 安全运维。原则是少用技术、少说废话、完整验证。
 
 ## 安装
 
@@ -8,11 +8,7 @@ TalexDreamSoul 的全局 Agent Skill，记录默认的内容、设计和 Cloudfl
 git clone https://github.com/TalexDreamSoul/tds.skill ~/.pi/agent/skills/tds.skill
 ```
 
-Pi 会自动发现 `SKILL.md`。命令名为：
-
-```text
-/skill:tds-skill
-```
+Pi 会自动读取 `SKILL.md`，也可以通过 `/skill:tds-skill` 使用。
 
 ## 更新
 
@@ -21,18 +17,4 @@ cd ~/.pi/agent/skills/tds.skill
 git pull --ff-only
 ```
 
-仓库更新后，新会话会自动读取最新规则。
-
-## 适用场景
-
-- 部署到 Cloudflare 或 Wrangler
-- 发布 `*.tagzxia.com` 文档站
-- 将研究、报告或指南整理成克制精简的网站
-
-## 原则
-
-最少的技术，最少的话，完整地交付。
-
-## License
-
-MIT
+License: MIT

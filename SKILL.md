@@ -1,8 +1,8 @@
 ---
 name: tds-skill
-description: TalexDreamSoul 的默认交付与部署约定。用户提到部署、上线、发布、Cloudflare、CF、Wrangler、文档站、静态站、tagzxia.com 或要求克制精简时使用。负责选择最小技术栈、按 tagzxia.com 规则命名、直接部署文档类产物，并完成线上验证。
+description: TalexDreamSoul 的默认交付、部署与 macOS 运维约定。用户提到部署、上线、发布、Cloudflare、CF、Wrangler、文档站、静态站、tagzxia.com、电脑卡顿、Mac 内存/硬盘、Swap、僵尸进程、进程泄漏、NetBird 日志或要求克制精简时使用。负责选择最小技术栈、安全诊断系统瓶颈、执行经授权的最小修复，并完成可验证交付。
 license: MIT
-compatibility: Requires Node.js and Wrangler for Cloudflare deployments.
+compatibility: Cloudflare deployments require Node.js and Wrangler. macOS diagnostics use built-in system tools; privileged repairs require explicit user approval and administrator authorization.
 metadata:
   author: TalexDreamSoul
   repository: https://github.com/TalexDreamSoul/tds.skill
@@ -35,6 +35,13 @@ metadata:
 - 文档按认知顺序一步一步展开，不在首页堆完整报告。
 - 删除空话、重复结论、夸张形容词和无来源数字。
 
+## 回复格式与长度
+
+- 清单、总结、对比和分析类回复默认使用一到三段连续文字，长度适中，优先把结论和必要依据讲清楚。
+- 除非用户明确要求，避免有序列表、无序列表、表格、过多标题以及复杂 Markdown 排版。
+- 不堆砌数据、日志和过程细节，只保留支撑结论所必需的关键事实；不要为了精简而省略重要风险或限制。
+- 只有内容复杂到连续文字会降低清晰度或准确性时，才使用最少量的结构化格式。
+
 ## 视觉规则
 
 - 克制、安静、清晰。中性色为主，只使用一个强调色。
@@ -48,10 +55,29 @@ metadata:
 
 部署前读取 [Cloudflare 参考](references/cloudflare-deploy.md)，按其中的检查、配置和验证顺序执行。
 
+## macOS 性能与系统维护
+
+用户要求分析电脑卡顿、内存、硬盘、Swap、僵尸进程、后台服务或 NetBird 日志时，先读取 [macOS 性能诊断与安全维护参考](references/macos-performance.md)。
+
+- 默认先做无侵入基线，不把诊断扫描本身造成的负载当成系统根因。
+- 区分直接根因、放大因素和结果；僵尸本身通常不是性能根因，未回收它的父进程才是故障点。
+- 结束进程、清理日志、覆盖安装和管理员操作必须有明确授权，并采用可回滚、可验证的最小动作。
+- 修复后复测进程数量、子进程归属、日志增长、服务状态、磁盘空间和活跃换页。
+
 ## 完成标准
+
+### 部署任务
 
 - 本地最小验证通过。
 - Wrangler 部署成功。
 - 自定义域名可访问并返回 `2xx`。
 - 页面关键标题和静态资源在线可见。
 - 最终只报告网址、实现摘要和验证结果。
+
+### macOS 运维任务
+
+- 根因排序有 CPU、内存、I/O、图形链路或进程归属证据。
+- 诊断阶段未擅自结束进程、删除文件或修改系统服务。
+- 已授权修复使用正常终止、官方来源、签名校验和原位日志处理。
+- 修复后进行干净采样，并报告前后数量与剩余风险。
+- 不输出私有网络节点、IP、公钥、凭据或完整敏感日志。
