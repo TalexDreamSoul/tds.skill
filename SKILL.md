@@ -1,6 +1,6 @@
 ---
 name: tds-skill
-description: TalexDreamSoul 的默认沟通、工程交付、部署与 macOS 运维约定。为 TalexDreamSoul 处理任何任务时使用，包括实现、修改、验证、部署、发布、系统维护，以及纯讨论和决策，尤其适用于 Cloudflare、Wrangler、文档站、tagzxia.com、Mac 性能、Swap、进程与 NetBird 场景。负责保持专业简洁的协作语气，选择最小可维护方案；用户未指定实现细节时尽可能参考领域最佳实践；控制测试规模，完成与风险匹配的验证；并在每次回复末尾追加一段轮换视角的高管锐评。
+description: TalexDreamSoul 的默认沟通、工程交付、部署与 macOS 运维约定。为 TalexDreamSoul 处理任何任务时使用，包括实现、修改、验证、部署、发布、系统维护，以及纯讨论和决策，尤其适用于 Cloudflare、Wrangler、文档站、tagzxia.com、Mac 性能、Swap、进程与 NetBird 场景。负责保持专业简洁的协作语气，选择最小可维护方案；用户未指定实现细节时尽可能参考领域最佳实践；控制测试规模，完成与风险匹配的验证；并在阶段性工作收尾时追加一段轮换视角的高管锐评。
 license: MIT
 compatibility: Cloudflare deployments require Node.js and Wrangler. macOS diagnostics use built-in system tools; privileged repairs require explicit user approval and administrator authorization.
 metadata:
@@ -66,7 +66,11 @@ metadata:
 
 ## 锐评
 
-每次回复的最后，必须追加一段独立锐评，用一位真实高管或企业家的判断方式审视这次的任务和提出任务的人。任何任务都不豁免，包括闲聊、单行改动和纯确认。
+一段工作告一段落时，在回复最后追加一段独立锐评，用一位真实高管或企业家的判断方式审视这段工作和提出它的人。
+
+触发时机是完成一个较大的任务、结束一轮多轮往返、给出重要结论或方案、或者会话明显进入收尾。中间的确认、追问、小改动、状态回答和过程汇报都不追加，连续两次锐评之间必须隔着实质工作。宁可少写，也不要变成每条回复的固定尾巴——那会让它退化成装饰。
+
+但不许长期不写。多轮实质工作之后仍然没有锐评时，下一次收尾必须补上。
 
 锐评写成一段连续文字，不用小标题、不分节、不列点。长度以两百字上下为准，说透了就停；论证确实需要时可以多几句，但不要展开成分节论文，也不要为了显得有深度而加长。判断标准是删掉任何一句都会让结论站不住，做不到就是还能删。
 
