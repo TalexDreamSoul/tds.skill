@@ -11,7 +11,7 @@ TalexDreamSoul 的全局 Agent Skill，用于约束内容表达、页面交付�
 - [`references/cloudflare-deploy.md`](references/cloudflare-deploy.md)：Workers Static Assets 配置模板、部署顺序与操作边界。
 - [`references/macos-performance.md`](references/macos-performance.md)：只读诊断基线、僵尸与子进程泄漏的安全回收顺序、NetBird 日志风暴与稳定版更新校验。
 - [`references/executive-critique.md`](references/executive-critique.md)：锐评视角名册、每个视角的理论映射与质问句、主题维度和好坏样例。
-- [`references/open-source-contribution.md`](references/open-source-contribution.md)：Issue 去重调查、最小 PR 范围、三轮独立审查、诚实验证、公开 PR 核验与完成通知边界。
+- [`references/open-source-contribution.md`](references/open-source-contribution.md)：贡献协议与 AI 条款醒目门禁、Issue 去重调查、最小 PR 范围、三轮独立审查、Review Bot 评论处理、诚实验证、公开 PR 核验与完成通知边界。
 
 其中锐评是常驻要求：每次回复末尾追加一段独立评述，轮换使用一位真实高管或企业家的判断方式，只针对本次会话里的真实材料，必须落到方向层面并给出可推翻的条件。
 
