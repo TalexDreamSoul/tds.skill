@@ -1,6 +1,6 @@
 ---
 name: tds-skill
-description: TalexDreamSoul 的默认沟通、工程交付、部署与 macOS 运维约定。为 TalexDreamSoul 处理任何任务时使用，包括实现、修改、验证、部署、发布、系统维护，以及纯讨论和决策，尤其适用于 Cloudflare、Wrangler、文档站、tagzxia.com、Mac 性能、Swap、进程与 NetBird 场景。负责保持专业简洁的协作语气，选择最小可维护方案；用户未指定实现细节时尽可能参考领域最佳实践；控制测试规模，完成与风险匹配的验证；并在阶段性工作收尾时追加一段轮换视角的高管锐评。
+description: TalexDreamSoul 的默认沟通、工程交付、上游开源贡献、部署与 macOS 运维约定。为 TalexDreamSoul 处理任何任务时使用，包括实现、修改、验证、GitHub Issue/PR、部署、发布、系统维护，以及纯讨论和决策，尤其适用于贡献协议与 AI 条款审查、Review Bot 评论处理、Cloudflare、Wrangler、文档站、tagzxia.com、Mac 性能、Swap、进程与 NetBird 场景。负责保持专业简洁的协作语气，选择最小可维护方案；用户未指定实现细节时尽可能参考领域最佳实践；控制测试规模，完成与风险匹配的验证；并只在阶段性工作真正收尾时追加一段轮换视角的高管锐评。
 license: MIT
 compatibility: Cloudflare deployments require Node.js and Wrangler. macOS diagnostics use built-in system tools; privileged repairs require explicit user approval and administrator authorization.
 metadata:

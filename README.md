@@ -1,10 +1,10 @@
 # tds.skill
 
-TalexDreamSoul 的全局 Agent Skill，用于约束内容表达、页面交付、Cloudflare 发布和 macOS 安全运维。原则是少用技术、少说废话、完整验证。
+TalexDreamSoul 的全局 Agent Skill，用于约束内容表达、工程交付、管理系统默认形态、上游开源贡献、Cloudflare 发布和 macOS 安全运维。原则是少用技术、少说废话、完整验证。
 
 ## 内容
 
-`SKILL.md` 覆盖沟通语气、KISS 与 YAGNI 工程取舍、部署类默认判断、`*.tagzxia.com` 命名、内容表达、回复长度、风险导向的测试策略、上游开源贡献门禁、视觉克制规则，以及部署与运维两套完成标准。
+`SKILL.md` 覆盖沟通语气、KISS 与 YAGNI 工程取舍、管理系统默认形态、部署类默认判断、`*.tagzxia.com` 命名、内容表达、回复长度、风险导向的测试策略、上游开源贡献门禁、视觉克制规则，以及部署与运维两套完成标准。
 
 四份参考按需读取：
 
@@ -13,7 +13,7 @@ TalexDreamSoul 的全局 Agent Skill，用于约束内容表达、页面交付�
 - [`references/executive-critique.md`](references/executive-critique.md)：锐评视角名册、每个视角的理论映射与质问句、主题维度和好坏样例。
 - [`references/open-source-contribution.md`](references/open-source-contribution.md)：贡献协议与 AI 条款醒目门禁、Issue 去重调查、最小 PR 范围、三轮独立审查、Review Bot 评论处理、诚实验证、公开 PR 核验与完成通知边界。
 
-其中锐评是常驻要求：每次回复末尾追加一段独立评述，轮换使用一位真实高管或企业家的判断方式，只针对本次会话里的真实材料，必须落到方向层面并给出可推翻的条件。
+锐评是低频里程碑要求：只在一条主线完成、方向被证实或推翻、或会话明显收尾时追加；轮换使用真实高管或企业家的判断方式，只针对本次会话材料，必须落到方向层面并给出可推翻条件。
 
 ## Touch Pie
 
