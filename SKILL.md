@@ -1,6 +1,6 @@
 ---
 name: tds-skill
-description: TalexDreamSoul 的默认沟通、工程交付、上游开源贡献、部署与 macOS 运维约定。为 TalexDreamSoul 处理任何任务时使用，包括雇主/客户项目、实现、修改、验证、GitHub Issue/PR、部署、发布、系统维护，以及纯讨论和决策，尤其适用于目标导向交付、主流程优先跑通、风险待办、长任务分批提交、向上汇报、贡献协议与 AI 条款审查、Review Bot 评论处理、Cloudflare、Wrangler、文档站、tagzxia.com、Mac 性能、Swap、进程与 NetBird 场景。负责保持专业简洁的协作语气，选择最小可维护方案；用户未指定实现细节时尽可能参考领域最佳实践；控制测试规模，完成与风险匹配的验证；并只在阶段性工作真正收尾时追加一段轮换视角的高管锐评。
+description: TalexDreamSoul 的默认沟通、工程交付、仓库收敛、上游开源贡献、部署与 macOS 运维约定。为 TalexDreamSoul 处理任何任务时使用，包括雇主/客户项目、实现、修改、验证、worktree/分支整合、GitHub Issue/PR、部署、发布、系统维护，以及纯讨论和决策，尤其适用于目标导向交付、主流程优先跑通、风险待办、长任务分批提交、仓库收敛与安全清理、向上汇报、贡献协议与 AI 条款审查、Review Bot 评论处理、Cloudflare、Wrangler、文档站、tagzxia.com、Mac 性能、Swap、进程与 NetBird 场景。负责保持专业简洁的协作语气，选择最小可维护方案；用户未指定实现细节时尽可能参考领域最佳实践；控制测试规模，完成与风险匹配的验证；并只在阶段性工作真正收尾时追加一段轮换视角的高管锐评。
 license: MIT
 compatibility: Cloudflare deployments require Node.js and Wrangler. macOS diagnostics use built-in system tools; privileged repairs require explicit user approval and administrator authorization.
 metadata:
@@ -51,6 +51,24 @@ metadata:
 - 非阻塞风险进入待办，不阻止已完成里程碑提交；会破坏当前提交正确性、可构建性或数据安全的风险必须先解决。
 - 用户已明确授权整项任务提交时，不为每个阶段重复索要确认；未授权 Commit 时只保留建议边界，不擅自提交。
 - 用户同时要求 Push 或 Release 时，推送已经验证的阶段提交，并只从最终集成通过的提交创建 Release；提交次数不能替代最终行为验证。
+
+## 仓库收敛与清理
+
+用户说“收敛”时，默认执行仓库级完整集成，而不是只提交当前 worktree 或当前分支。
+
+- 先确认仓库规范主分支是 `master` 还是 `main`，刷新远端引用，并盘点全部 Git/Orca worktree、本地分支、跟踪分支、终端占用以及 staged、unstaged、untracked 修改。
+- worktree 本身不能被合并；应保全其中未提交的修改，再整合它承载的分支。不得覆盖并行工作、静默丢弃文件，或把删除残留分支冒充成功合并。
+- 对每个分支判定为应交付、补丁等价、已被覆盖、明确废弃或阻塞。只整合仍有有效增量的内容；冲突解决为空表示内容已经被覆盖，不制造空提交。
+- 脏 worktree 在整合前必须建立可验证备份，覆盖 staged、unstaged 和 untracked 文件；普通 stash 未包含未跟踪文件时不能视为完整保全。
+- 在独立集成 worktree 中从最新规范主线开始，按依赖顺序整合；共享 lockfile、生成物和跨包索引必须在最终主线上重新生成，不能从混合脏树整块复制。
+- 收敛期间持续检查原 worktree 是否仍有并行写入；出现新修改时重新保全、审阅、整合和验证，直到状态稳定。
+- 最终验证覆盖受影响的安装、lint、类型检查、测试、构建及真实 UI/CLI/宿主 smoke；具体规模按风险决定，不能用单个局部绿灯代替主线验证。
+- 验证通过后才把集成 tip 推进到本地 `master`/`main`，让主工作树回到规范主分支并保持 clean；未解释修改、未归属提交和失败门禁必须明确报告。
+- “收敛”本身授权完成整合所必需的本地 Commit、Merge/Rebase 和规范主分支推进；不授权 Push、远端 PR 合并、Release 或远端分支删除，这些动作仍需用户当次明确要求。
+
+用户说“本地收敛”时，范围只到本地 Git/Orca 状态：不推进远端主分支、不合并远端 PR、不删除远端分支。用户同时说“清理”时，这一指令授权在集成和最终验证通过后关闭临时服务与终端，移除非主 worktree，删除已合入、补丁等价、已覆盖或明确废弃的本地分支和临时备份，并执行 `git worktree prune`；远端清理仍需单独明确授权。
+
+完成报告必须给出规范主分支与最终 SHA、剩余 worktree/分支、工作区是否 clean、验证结果，以及所有未完成、互斥或无法安全归属的残留。
 
 ## 默认判断
 
