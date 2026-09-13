@@ -1,6 +1,6 @@
 ---
 name: tds-skill
-description: TalexDreamSoul 的默认沟通、工程交付、仓库收敛、上游开源贡献、部署与 macOS 运维约定。为 TalexDreamSoul 处理任何任务时使用，包括雇主/客户项目、实现、修改、验证、worktree/分支整合、GitHub Issue/PR、部署、发布、系统维护，以及纯讨论和决策，尤其适用于目标导向交付、主流程优先跑通、风险待办、长任务分批提交、仓库收敛与安全清理、向上汇报、贡献协议与 AI 条款审查、Review Bot 评论处理、Cloudflare、Wrangler、文档站、tagzxia.com、Mac 性能、Swap、进程与 NetBird 场景。负责保持专业简洁的协作语气，选择最小可维护方案；用户未指定实现细节时尽可能参考领域最佳实践；控制测试规模，完成与风险匹配的验证；并只在阶段性工作真正收尾时追加一段轮换视角的高管锐评。
+description: TalexDreamSoul 的默认协作、工程交付与 Skill 路由中枢。为任何任务先判断目标、平台、风险和真实验收面，再把任务路由到最小的领域 Skill；覆盖雇主项目、仓库收敛、上游贡献、部署发布、Cloudflare、macOS 运维、产品 UI、设计系统、品牌与 Logo 工作。保持专业简洁的协作语气，选择最小可维护方案；用户未指定实现细节时参考领域最佳实践；只在阶段性工作真正收尾时追加轮换视角的高管锐评。
 license: MIT
 compatibility: Cloudflare deployments require Node.js and Wrangler. macOS diagnostics use built-in system tools; privileged repairs require explicit user approval and administrator authorization.
 metadata:
@@ -30,6 +30,51 @@ metadata:
 - 用户未明确指定方案或实现细节时，尽可能参考目标领域的成熟最佳实践、官方指南和安全可靠性惯例；但不违背用户需求、项目既有约定、KISS、YAGNI 或当前任务范围。
 - 先读后写，修改前理解相邻实现、现有约束和验证方式。
 - 不修无关问题；可以报告旁路发现，但不要扩大改动范围。
+## Skill 路由中枢
+
+TDS 是总入口，不复制其他 Skill 的长篇实现规则。先由本节判断任务类型，再读取一个主 Skill；只有主 Skill 明确要求或存在独立安全边界时，才叠加辅助 Skill。路由目标是减少重复规则、避免多个 Skill 同时抢占同一决策，并让任何新 Skill 都能被发现而不是变成孤岛。
+
+### 路由顺序
+
+1. **先判断交付面**：代码/仓库、Web UI、原生 macOS、品牌视觉、部署运维、外部服务，或纯讨论。
+2. **再判断动作**：新建、修改、审计、排障、发布、同步、收敛、`polish`、`critique` 或 `harden`。
+3. **选择一个主 Skill**：主 Skill 负责流程、边界和验收；TDS 只保留通用沟通、风险、提交和真实主流程约束。
+4. **按需叠加辅助 Skill**：辅助 Skill 只能补充明确的技术边界，不能覆盖主 Skill 的目标、权限或发布门禁。
+5. **缺少专用 Skill 时回到 TDS**：先沿用仓库现有模式，以最小改动完成真实闭环；不要为了“有 Skill”而创造新的抽象。
+
+### 常用入口
+
+| 用户意图 | 主 Skill | 典型触发词 | 辅助入口 |
+|---|---|---|---|
+| 设计、重做、打磨 Web/App UI | `impeccable` | redesign、polish、critique、layout、colorize | `apple-design`、`design-taste-frontend`、`kumo-next-admin-cms` |
+| Logo、品牌标记、视觉方向 | `logo-generator` | logo、brand mark、concept、showcase | `brandkit`、`macos-utility-logo-iteration`、`controlled-chinese-banner-generation` |
+| 可爱 IP / 吉祥物 | `ip-as-logo` | mascot、IP、character、cute logo | `brandkit` |
+| Tuff / Talex-touch 产品与桌面端 | `talex-touch-*` 专项 Skill | Tuff、CoreBox、VoiceDock、Nexus、插件 | `tds-skill` 仅做总约束 |
+| Kumo 管理后台 | `kumo-next-admin-cms` 或对应 Kumo 专项 | Kumo、Admin、CMS、Dialog、Table | `impeccable` 做视觉审查，不覆盖 Kumo 组件边界 |
+| 仓库、分支、worktree、提交 | `tds-local-convergence-cleanup` 或项目专项 | 收敛、清理、合并、提交、分支 | `git-skill-local-macwork-deploy`、`orca-cli` |
+| 发布到 MacWork / 同步 Skill | `git-skill-local-macwork-deploy` | sync、MacWork、部署 Skill、SHA parity | `tds-local-convergence-cleanup` |
+| Cloudflare / 线上发布 | 项目专项发布 Skill | deploy、release、Cloudflare、Worker | `tds-skill` 的 Cloudflare 参考 |
+| macOS 性能、权限、原生崩溃 | 对应 `macos-*` 或项目专项 | 卡顿、Swap、TCC、crash、launchd | `tds-skill` 的 macOS 参考 |
+| 外部仓库 Issue / PR | `upstream-contribution-policy-and-review-gates` 或项目专项 | upstream、Issue、PR、review | `tds-skill` 的贡献参考 |
+
+### Impeccable 风格的命令映射
+
+当用户直接使用以下动作词时，按对应 Skill 处理，不要求用户记住完整 Skill 名称：
+
+- `polish`：先读取目标界面和现有设计规范，再做最终质量收口；不把“换颜色”冒充整体优化。
+- `critique`：只做证据化审查，输出问题优先级、复现面和修复顺序，不直接改代码，除非用户同时要求修复。
+- `redesign` / `shape`：先重构信息架构和视觉方向，再实现；避免在旧结构上连续打补丁。
+- `harden`：补齐错误、权限、i18n、响应式、可访问性和边界状态，不能只加表面校验。
+- `distill`：删掉不必要的颜色、装饰、层级和功能，不用新增元素掩盖结构问题。
+- `release` / `sync`：先确认目标环境和身份，再执行最小可回滚动作，最后提供独立 SHA、产物和真实入口证据。
+
+### 路由不变量
+
+- 一个任务只有一个主 Skill；多个候选冲突时，选择边界更窄、验收更真实的那个。
+- 专项 Skill 的安全、身份、支付、数据和发布门禁优先于通用设计或工程建议。
+- `impeccable` 负责设计系统与界面质量，不替代原生 macOS、Tuff、Kumo 或部署专项 Skill。
+- `logo-generator` 负责 Logo 方向与 SVG/展示流程，不自动替代 `macos-utility-logo-iteration` 的 16px、菜单栏和系统状态审查。
+- 新增常用 Skill 时只加入路由索引和触发条件；详细规则继续留在专用 Skill，避免 TDS 重新变成巨型重复手册。
 
 ## 雇主与商业项目交付
 

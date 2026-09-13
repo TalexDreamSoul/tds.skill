@@ -1,10 +1,10 @@
 # tds.skill
 
-TalexDreamSoul 的全局 Agent Skill，用于约束内容表达、目标导向交付、雇主项目推进、长任务分批提交、仓库收敛与 worktree/分支清理、管理系统默认形态、上游开源贡献、Cloudflare 发布和 macOS 安全运维。原则是先跑通真实主流程、风险进入待办、里程碑形成可回滚提交、完整整合并验证主线、少用技术、少说废话。
+TalexDreamSoul 的全局 Agent Skill 与路由中枢，用于约束内容表达、目标导向交付、工程实现、仓库收敛与 worktree/分支清理、管理系统默认形态、上游开源贡献、Cloudflare 发布、macOS 安全运维，以及产品 UI、设计系统、品牌和 Logo 工作。TDS 先判断任务目标、平台、动作和风险，再把任务路由到一个最小的领域 Skill；原则是先跑通真实主流程、风险进入待办、里程碑形成可回滚提交、完整整合并验证主线、少用技术、少说废话。
 
 ## 内容
 
-`SKILL.md` 覆盖沟通语气、KISS 与 YAGNI 工程取舍、雇主/客户项目的目标与主流程优先级、风险待办、长任务分批提交和向上汇报、仓库级收敛与安全清理、管理系统默认形态、部署类默认判断、`*.tagzxia.com` 命名、内容表达、回复长度、风险导向的测试策略、上游开源贡献门禁、视觉克制规则，以及部署与运维两套完成标准。
+`SKILL.md` 覆盖沟通语气、Skill 路由顺序与常用入口、KISS 与 YAGNI 工程取舍、雇主/客户项目的目标与主流程优先级、风险待办、长任务分批提交和向上汇报、仓库级收敛与安全清理、管理系统默认形态、部署类默认判断、`*.tagzxia.com` 命名、内容表达、风险导向的测试策略、上游开源贡献门禁、视觉克制规则，以及部署与运维两套完成标准。详细的 UI、Logo、Kumo、macOS 和发布流程仍由对应专项 Skill 负责，TDS 只做发现、路由和通用不变量，避免规则重复漂移。
 
 五份参考按需读取：
 
@@ -15,6 +15,7 @@ TalexDreamSoul 的全局 Agent Skill，用于约束内容表达、目标导向�
 - [`references/employer-project-delivery.md`](references/employer-project-delivery.md)：雇主与商业项目的目标定义、最小真实闭环、风险待办、提醒时机和可直接转发的向上汇报话术。
 
 锐评是低频里程碑要求：只在一条主线完成、方向被证实或推翻、或会话明显收尾时追加；轮换使用真实高管或企业家的判断方式，只针对本次会话材料，必须落到方向层面并给出可推翻条件。
+常用设计与 Logo Skill 的路由入口包括：`impeccable`（界面 redesign/polish/critique）、`logo-generator`（Logo 方向与 SVG/showcase）、`ip-as-logo`（IP 吉祥物）以及 `apple-design`、`brandkit`、`macos-utility-logo-iteration` 等辅助 Skill。TDS 不复制这些 Skill 的实现细节，只维护触发条件、主辅关系和冲突优先级。
 
 ## Touch Pie
 
