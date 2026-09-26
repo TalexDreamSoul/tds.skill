@@ -51,8 +51,6 @@ TDS 是总入口，不复制其他 Skill 的实现细节。先判断任务类型
 | macOS 卡顿、权限、原生崩溃 | 本 Skill 的 macOS 参考 | 卡顿、Swap、TCC、crash、launchd | — |
 | 外部仓库 Issue / PR | 本 Skill 的贡献参考 | upstream、Issue、PR、review | — |
 
-还没有对应 Skill 目录的目标，别在表里当成已有能力：Kumo 管理后台、Tuff / Talex-touch 桌面端、macOS 工具图标迭代、中文 banner 生成、MacWork 部署同步。
-
 ## 雇主与商业项目
 
 任务来自雇主、客户、合作团队，或明显服务于商业交付和线上业务时，先读[雇主与商业项目交付参考](references/employer-project-delivery.md)。
