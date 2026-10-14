@@ -1,6 +1,6 @@
 ---
 name: tds-skill
-description: TalexDreamSoul 的默认协作与交付规则，同时是 Skill 路由中枢。先判断任务的目标、平台、风险和真实验收面，再把任务交给一个最小的领域 Skill；覆盖沟通语气、工程与验证、Skill 路由、雇主项目交付、长任务分批提交与图解、仓库收敛清理、系统默认形态、上游开源贡献、Cloudflare 发布、macOS 运维、中文技术文档写作、内容与视觉底线，以及阶段性收尾时的轮换视角锐评。雇主项目、开源贡献、Cloudflare 部署、macOS 诊断、锐评视角、中文技术文档写作六份参考按需读取。
+description: TalexDreamSoul 的默认协作与交付规则，同时是 Skill 路由中枢。先判断任务的目标、平台、风险和真实验收面，再把任务交给一个最小的领域 Skill；覆盖沟通语气、工程与验证、资源安全与磁盘防爆、Skill 路由、雇主项目交付、长任务分批提交与图解、仓库收敛清理、系统默认形态、上游开源贡献、Cloudflare 发布、macOS 运维、中文技术文档写作、内容与视觉底线，以及阶段性收尾时的轮换视角锐评。雇主项目、开源贡献、Cloudflare 部署、macOS 诊断、锐评视角、中文技术文档写作六份参考按需读取。
 license: MIT
 compatibility: Cloudflare deployments require Node.js and Wrangler. macOS diagnostics use built-in system tools; privileged repairs require explicit user approval and administrator authorization.
 metadata:
@@ -27,6 +27,19 @@ metadata:
 - 先读后写：动手前看懂相邻实现、现有约束和验证方式。不修无关问题，旁路发现只报告。
 - 先跑最小相关的已有验证，再按风险决定扩到 lint、typecheck、test、build；不为低风险改动新增重复测试；验证失败先分清是不是这次改动引入的。
 
+## 资源安全与磁盘防爆
+
+磁盘与硬件资源不是无限的。操作前先看余量，用完主动扫尾闭环。
+
+- **低于 5GB 红色警戒**：
+  - 主分区（`/System/Volumes/Data`）可用空间 < 5GB 时进入受限模式：执行任何产生文件的操作前必须先读剩余容量，慎之又慎。
+  - 严禁在主盘写入 >100MB 的编译产物、依赖缓存、Docker 镜像、音视频素材或模型权重；需要大空间时使用 `/tmp`、外置盘或流式处理。
+  - 严禁盲目执行全量依赖重装（如无锁 `pnpm install`）、无上限的日志输出或未限流的并行并发下载。
+- **资源即用即清（Lifecycle Guarantee）**：
+  - 任何临时工程、测试分支、沙箱容器、虚拟挂载、构建产物、音频/视频中间切片，必须做到「谁创建，谁负责清理」，绝不把临时产物丢在系统里不管。
+  - 任务结束、阶段性收尾或异常退出时，必须主动扫描并回收本次产生的临时资源与孤立进程；交付前核验磁盘空间净释放。
+  - 遍历排查磁盘容量时严格带 `-x`，禁止无边界深入跨卷挂载目录（如多 APFS 容器模拟器挂载点），避免引发系统内核 I/O 挂起（`U` 状态）卡死。
+
 ## Skill 路由
 
 TDS 是总入口，不复制其他 Skill 的实现细节。先判断任务类型，再挑一个主 Skill；只有主 Skill 明确要求、或存在独立安全边界时，才叠加辅助 Skill。一个任务只有一个决策方。
@@ -50,6 +63,7 @@ TDS 是总入口，不复制其他 Skill 的实现细节。先判断任务类型
 | Cloudflare / 线上发布 | 本 Skill 的 Cloudflare 参考 | deploy、release、Cloudflare、Worker | 项目专项发布 Skill |
 | macOS 卡顿、权限、原生崩溃 | 本 Skill 的 macOS 参考 | 卡顿、Swap、TCC、crash、launchd | — |
 | 外部仓库 Issue / PR | 本 Skill 的贡献参考 | upstream、Issue、PR、review | — |
+| 磁盘告急、清理孤立临时文件 | `disk-guard` / 本 Skill 资源安全小节 | 磁盘、清理、瘦身、清理电脑、code_sign_clone | 本 Skill 的 macOS 参考 |
 
 ## 雇主与商业项目
 

@@ -79,12 +79,14 @@ du -x -d 1 -h "$HOME" 2>/dev/null
 
 扫描较大目录时逐层缩小范围，例如 `Workspace`、`Library/Application Support`、`Library/Containers`、`Library/Group Containers`、`.cache`、包管理器缓存和 `/private/var`。
 
-注意：
+注意与防爆规则：
 
-- `du`、`find`、Spotlight 查询本身会制造磁盘读取和 CPU 负载。
-- 并行容量扫描完成后，确认没有遗留 `du`/`find` 进程，再重新进行 8 至 10 秒干净采样。
+- **< 5GB 红色警戒**：可用空间低于 5GB 时立即标红，禁止执行无上限的大型构建、批量解包、容器创建或安装；资源用完必须主动闭环清理。
+- **严禁跨越挂载点**：扫描容量时必须带 `-x`（`du -x`）。绝不要在包含多 APFS 容器虚拟挂载点（如 `/Library/Developer/CoreSimulator/Volumes`、Cryptex、DMG 挂载点）的路径下执行无 `-x` 的深度遍历，否则会触发系统内核 I/O 挂起（`U` 状态）卡死。
+- **防范孤立垃圾堆积**：优先排查 Chromium/ego 签名克隆（`code_sign_clone`）、`/tmp` 下 >24h 且无进程占用的陈旧目录、以及未清理的包管理器缓存（`uv`、`pip`、`pnpm store`）。
+- **资源即用即清**：临时文件、挂载卷、调试容器在使用完毕或发生异常时必须显式回收，交付前重新核验磁盘净释放。
+- `du`、`find`、Spotlight 查询本身会制造磁盘读取和 CPU 负载。并行扫描完成后，确认没有遗留 `du`/`find` 进程，再重新进行 8 至 10 秒干净采样。
 - iCloud 占位文件的逻辑大小不等于本地实际占用，不要把 `mdfind` 的文件大小直接当成可释放空间。
-
 ## 僵尸与子进程泄漏
 
 ### 定位
