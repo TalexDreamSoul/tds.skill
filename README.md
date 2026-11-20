@@ -10,6 +10,7 @@ TalexDreamSoul 的全局 Agent Skill 与路由中枢。TDS 先判断任务目标
 
 - [`references/employer-project-delivery.md`](references/employer-project-delivery.md)：雇主与商业项目的目标定义、最小真实闭环、风险待办、提醒时机和可直接转发的向上汇报话术。
 - [`references/chinese-tech-writing.md`](references/chinese-tech-writing.md)：中文技术文档的句子、语气、结构、排版与数字规则，产品手册目录和文件名约定，14 条 AI 腔清单，以及 `autocorrect` 自检流程。整理自 [leter/zh-tech-writing](https://github.com/leter/zh-tech-writing)（MIT）。
+- [Answer Me with HTML Plus](references/answer-me-with-html-plus.md) 随 TDS.skill 带上渲染器。更新现有 TDS.skill 后，使用 Node.js 20+ 就能生成图优先的卡片报告和可切换的方案结果。
 - [`references/open-source-contribution.md`](references/open-source-contribution.md)：贡献协议与 AI 条款门禁、Issue 去重调查、最小 PR 范围、三轮独立审查、Review Bot 评论处理、诚实验证、公开 PR 核验与完成通知边界。
 - [`references/cloudflare-deploy.md`](references/cloudflare-deploy.md)：Workers Static Assets 配置模板、部署顺序与完成标准、命名约定和操作边界。
 - [`references/macos-performance.md`](references/macos-performance.md)：只读诊断基线、僵尸与子进程泄漏的安全回收顺序、NetBird 日志风暴与稳定版更新校验。

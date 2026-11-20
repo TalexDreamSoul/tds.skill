@@ -1,8 +1,8 @@
 ---
 name: tds-skill
-description: TalexDreamSoul 的默认协作与交付规则，同时是 Skill 路由中枢。先判断任务的目标、平台、风险和真实验收面，再把任务交给一个最小的领域 Skill；覆盖沟通语气、工程与验证、资源安全与磁盘防爆、Skill 路由、雇主项目交付、长任务分批提交与图解、仓库收敛清理、系统默认形态、上游开源贡献、Cloudflare 发布、macOS 运维、中文技术文档写作、内容与视觉底线，以及阶段性收尾时的轮换视角锐评。雇主项目、开源贡献、Cloudflare 部署、macOS 诊断、锐评视角、中文技术文档写作六份参考按需读取。
+description: TalexDreamSoul 的默认协作与交付规则，同时是 Skill 路由中枢。先判断任务的目标、平台、风险和真实验收面，再把任务交给一个最小的领域 Skill。内置 Answer Me with HTML Plus，用于复杂调研报告、方案比较、排障和图解。也覆盖沟通语气、工程与验证、资源安全与磁盘防爆、雇主项目交付、长任务图解、仓库收敛、系统默认形态、开源贡献、Cloudflare 发布、macOS 运维、中文技术文档写作和阶段性锐评。
 license: MIT
-compatibility: Cloudflare deployments require Node.js and Wrangler. macOS diagnostics use built-in system tools; privileged repairs require explicit user approval and administrator authorization.
+compatibility: Answer Me with HTML Plus uses Node.js 20+ and its bundled renderer. Cloudflare deployments require Node.js and Wrangler. macOS diagnostics use built-in system tools; privileged repairs require explicit user approval and administrator authorization.
 metadata:
   author: TalexDreamSoul
   repository: https://github.com/TalexDreamSoul/tds.skill
@@ -57,6 +57,7 @@ TDS 是总入口，不复制其他 Skill 的实现细节。先判断任务类型
 | 可爱 IP / 吉祥物 | `ip-as-logo` | mascot、IP、character、cute logo | `brandkit` |
 | 打开网页、抓包、验证 UI、跑 E2E | `ego-browser` | 浏览器、截图、E2E、登录态、抓包 | — |
 | 长任务进度上报 | `task-pulse` | 进度、上报、pulse、长任务状态 | 本 Skill 的长任务图解 |
+| 交付复杂调研、方案对比、架构或排障图解 | 本 Skill 的 [Answer Me with HTML Plus](references/answer-me-with-html-plus.md) | HTML Plus、用图回答、调研报告、方案对比、调用链、长报告卡片 | 技术文档写作参考用于内容审校 |
 | 写或改中文技术文档、报告、文档站 | 本 Skill 的中文技术文档写作参考 | README、文档、教程、接口说明、改写、易读 | `impeccable` 只管界面视觉 |
 | 雇主 / 客户 / 商业交付 | 本 Skill 的雇主项目参考 | 雇主、客户、验收、试用期、上线目标 | — |
 | 仓库、分支、worktree、提交 | 本 Skill 的仓库收敛小节 | 收敛、清理、合并、提交、分支 | `orca-cli` |
