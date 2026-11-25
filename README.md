@@ -2,7 +2,7 @@
 
 TalexDreamSoul 的全局 Agent Skill 与路由中枢。TDS 先判断任务目标、平台、动作和风险，再把任务路由到一个最小的领域 Skill；原则是先跑通真实主流程、风险进入待办、里程碑形成可回滚提交、完整整合并验证主线、少用技术、少说废话。
 
-`SKILL.md` 只留通用约束：沟通语气、工程与验证底线、资源安全与磁盘防爆（<5GB 红色警戒与即用即清全生命周期回收）、Skill 路由表和触发条件、雇主/客户项目交付、长任务分批提交与图解、仓库级收敛与安全清理、管理系统默认形态、内容与视觉底线，以及部署和运维入口。详细的 UI、Logo、macOS 和发布流程由对应专项 Skill 负责，TDS 只做发现、路由和通用不变量，避免规则重复漂移。
+`SKILL.md` 只留通用约束：沟通语气、工程与验证底线、资源安全与磁盘防爆（<15GB 警示与清理防爆机制、<5GB 极度受限与即用即清全生命周期回收）、Skill 路由表和触发条件、雇主/客户项目交付、长任务分批提交与图解、仓库级收敛与安全清理、管理系统默认形态、内容与视觉底线，以及部署和运维入口。详细的 UI、Logo、macOS 和发布流程由对应专项 Skill 负责，TDS 只做发现、路由和通用不变量，避免规则重复漂移。
 
 ## 参考
 
@@ -10,7 +10,8 @@ TalexDreamSoul 的全局 Agent Skill 与路由中枢。TDS 先判断任务目标
 
 - [`references/employer-project-delivery.md`](references/employer-project-delivery.md)：雇主与商业项目的目标定义、最小真实闭环、风险待办、提醒时机和可直接转发的向上汇报话术。
 - [`references/chinese-tech-writing.md`](references/chinese-tech-writing.md)：中文技术文档的句子、语气、结构、排版与数字规则，产品手册目录和文件名约定，14 条 AI 腔清单，以及 `autocorrect` 自检流程。整理自 [leter/zh-tech-writing](https://github.com/leter/zh-tech-writing)（MIT）。
-- [Answer Me with HTML Plus](references/answer-me-with-html-plus.md) 随 TDS.skill 带上渲染器。更新现有 TDS.skill 后，使用 Node.js 20+ 就能生成图优先的卡片报告和可切换的方案结果。
+- [Answer Me with HTML Plus](references/answer-me-with-html-plus.md)：随仓库内置 Answer Me with HTML `v0.6.4` 渲染器，整合 Tuffer 多图报告约定，强调**多时序图、多架构图、多各种图与少字**；使用 Node.js 20+ 即可生成简约卡片报告、交互分步 `steps` 图解和 `scenarios` 场景切换对比。
+- [`references/obsidian-keynote-deck.md`](references/obsidian-keynote-deck.md)：黑曜石发布会风演示稿与暗黑发光线稿规范，**做 PPT / 演示稿限定使用 Slidev**，随仓库附带样式、Vue 组件模板、SVG 线稿样例和可点击 16:9 PDF 导出脚本。
 - [`references/open-source-contribution.md`](references/open-source-contribution.md)：贡献协议与 AI 条款门禁、Issue 去重调查、最小 PR 范围、三轮独立审查、Review Bot 评论处理、诚实验证、公开 PR 核验与完成通知边界。
 - [`references/cloudflare-deploy.md`](references/cloudflare-deploy.md)：Workers Static Assets 配置模板、部署顺序与完成标准、命名约定和操作边界。
 - [`references/macos-performance.md`](references/macos-performance.md)：只读诊断基线、僵尸与子进程泄漏的安全回收顺序、NetBird 日志风暴与稳定版更新校验。
@@ -20,9 +21,9 @@ TalexDreamSoul 的全局 Agent Skill 与路由中枢。TDS 先判断任务目标
 
 低频里程碑要求：只在一条主线完成、方向被证实或推翻、或会话明显收尾时追加；轮换使用真实高管或企业家的判断方式，只针对本次会话材料，必须落到方向层面并给出可推翻条件。
 
-## Touch Pie
+## 内置分发（Touch Pie 与 Tuffer）
 
-`@talex-touch/touch-pie` 已内置该 Skill，安装或更新 Pie 后无需再单独克隆：
+`@talex-touch/touch-pie` 与 Tuffer（`dsh-tuffer`）均内置该 Skill，安装或更新后即可直接使用：
 
 ```bash
 npm install -g @talex-touch/touch-pie@latest

@@ -1,10 +1,11 @@
 ---
 name: tds-skill
-description: TalexDreamSoul 的默认协作与交付规则，同时是 Skill 路由中枢。先判断任务的目标、平台、风险和真实验收面，再把任务交给一个最小的领域 Skill。内置 Answer Me with HTML Plus，用于复杂调研报告、方案比较、排障和图解。也覆盖沟通语气、工程与验证、资源安全与磁盘防爆、雇主项目交付、长任务图解、仓库收敛、系统默认形态、开源贡献、Cloudflare 发布、macOS 运维、中文技术文档写作和阶段性锐评。
+description: TalexDreamSoul 的默认协作与交付规则，同时是 Skill 路由中枢。先判断任务的目标、平台、风险和真实验收面，再把任务交给一个最小的领域 Skill。内置 Answer Me with HTML Plus（基于 am v0.6.4，强调多时序图、多架构图、多各种图与少字，适合复杂调研报告、方案对比、代码库拆解与排障图解）与黑曜石演示稿规范（做 PPT / 汇报稿 / 销售演示稿限定使用 Slidev，含暗黑发光 SVG 线稿、真机交互页与可点击 PDF 导出）。也覆盖沟通语气、工程与验证、资源安全与磁盘防爆、雇主项目交付、长任务图解、仓库收敛、系统默认形态、开源贡献、Cloudflare 发布、macOS 运维、中文技术文档写作和阶段性锐评。
 license: MIT
 compatibility: Answer Me with HTML Plus uses Node.js 20+ and its bundled renderer. Cloudflare deployments require Node.js and Wrangler. macOS diagnostics use built-in system tools; privileged repairs require explicit user approval and administrator authorization.
 metadata:
   author: TalexDreamSoul
+  version: "1.6.0"
   repository: https://github.com/TalexDreamSoul/tds.skill
 ---
 
@@ -26,15 +27,17 @@ metadata:
 - KISS、YAGNI：只实现当前明确需要的功能；职责、接口、依赖清楚，沿用仓库现有的框架、工具和约定。
 - 先读后写：动手前看懂相邻实现、现有约束和验证方式。不修无关问题，旁路发现只报告。
 - 先跑最小相关的已有验证，再按风险决定扩到 lint、typecheck、test、build；不为低风险改动新增重复测试；验证失败先分清是不是这次改动引入的。
+- **Lark / 飞书 CLI 隔离规范**：严禁全局更换默认 Profile（禁止执行 `lark-cli profile use` 等持久篡改全局默认配置的操作）；跨工号/跨账号操作一律只能通过单次参数（`--profile <name>`）或终端环境变量（`LARKSUITE_CLI_PROFILE=<name>` / 独立配置目录 `LARKSUITE_CLI_CONFIG_DIR`）进行隔离更改。
 
 ## 资源安全与磁盘防爆
 
 磁盘与硬件资源不是无限的。操作前先看余量，用完主动扫尾闭环。
 
-- **低于 5GB 红色警戒**：
-  - 主分区（`/System/Volumes/Data`）可用空间 < 5GB 时进入受限模式：执行任何产生文件的操作前必须先读剩余容量，慎之又慎。
-  - 严禁在主盘写入 >100MB 的编译产物、依赖缓存、Docker 镜像、音视频素材或模型权重；需要大空间时使用 `/tmp`、外置盘或流式处理。
-  - 严禁盲目执行全量依赖重装（如无锁 `pnpm install`）、无上限的日志输出或未限流的并行并发下载。
+- **低于 15GB 警示与清理机制（防爆警戒）**：
+  - 主分区（`/System/Volumes/Data`）可用空间 < 15GB 时立即进入警示状态，触发受限操作与主动清理：
+    - **警示与受限**：执行任何可能产生文件的操作前必须先读剩余容量；严禁在主盘写入 >100MB 的编译产物、依赖缓存、Docker 镜像、音视频素材或模型权重；大空间操作必须使用 `/tmp`、外置盘或流式处理；严禁盲目执行全量依赖重装（如无锁 `pnpm install`）、无上限的日志输出或未限流的并行并发下载。
+    - **主动清理**：必须主动扫描并执行安全清理（如运行 `disk-guard --clean`、清理 Go/uv/pip 等包缓存、`pnpm store prune`，回收孤立 code_sign_clone 副本、陈旧无进程引用的 `/tmp` 临时文件与虚拟磁盘），将可用容量恢复至 15GB 以上安全水位。
+    - **极度危急（< 5GB）**：若可用空间跌破 5GB，进入极度受限模式，暂停所有产生磁盘消耗的非必要任务，优先闭环释放空间。
 - **资源即用即清（Lifecycle Guarantee）**：
   - 任何临时工程、测试分支、沙箱容器、虚拟挂载、构建产物、音频/视频中间切片，必须做到「谁创建，谁负责清理」，绝不把临时产物丢在系统里不管。
   - 任务结束、阶段性收尾或异常退出时，必须主动扫描并回收本次产生的临时资源与孤立进程；交付前核验磁盘空间净释放。
@@ -57,7 +60,8 @@ TDS 是总入口，不复制其他 Skill 的实现细节。先判断任务类型
 | 可爱 IP / 吉祥物 | `ip-as-logo` | mascot、IP、character、cute logo | `brandkit` |
 | 打开网页、抓包、验证 UI、跑 E2E | `ego-browser` | 浏览器、截图、E2E、登录态、抓包 | — |
 | 长任务进度上报 | `task-pulse` | 进度、上报、pulse、长任务状态 | 本 Skill 的长任务图解 |
-| 交付复杂调研、方案对比、架构或排障图解 | 本 Skill 的 [Answer Me with HTML Plus](references/answer-me-with-html-plus.md) | HTML Plus、用图回答、调研报告、方案对比、调用链、长报告卡片 | 技术文档写作参考用于内容审校 |
+| 交付复杂调研、方案对比、架构拆解、调用链或排障图解 | 本 Skill 的 [Answer Me with HTML Plus](references/answer-me-with-html-plus.md) | HTML Plus、用图回答、调研报告、方案对比、架构图、时序图、调用链、长报告卡片 | 多时序图、多架构图、多各种图、少字；技术文档写作参考用于审校 |
+| 做 PPT、汇报稿、销售演示稿、暗黑发光线稿 | 本 Skill 的 [黑曜石演示稿与暗黑发光线稿](references/obsidian-keynote-deck.md) | PPT、演示稿、Slidev、汇报稿、销售版、线稿、暗黑发光线稿、导出 PDF | **限定使用 Slidev**（除非明确要求 `.pptx` 等其他载体）；发布走 Cloudflare 或独立 Nginx 对外隔离 |
 | 写或改中文技术文档、报告、文档站 | 本 Skill 的中文技术文档写作参考 | README、文档、教程、接口说明、改写、易读 | `impeccable` 只管界面视觉 |
 | 雇主 / 客户 / 商业交付 | 本 Skill 的雇主项目参考 | 雇主、客户、验收、试用期、上线目标 | — |
 | 仓库、分支、worktree、提交 | 本 Skill 的仓库收敛小节 | 收敛、清理、合并、提交、分支 | `orca-cli` |
@@ -65,6 +69,7 @@ TDS 是总入口，不复制其他 Skill 的实现细节。先判断任务类型
 | macOS 卡顿、权限、原生崩溃 | 本 Skill 的 macOS 参考 | 卡顿、Swap、TCC、crash、launchd | — |
 | 外部仓库 Issue / PR | 本 Skill 的贡献参考 | upstream、Issue、PR、review | — |
 | 磁盘告急、清理孤立临时文件 | `disk-guard` / 本 Skill 资源安全小节 | 磁盘、清理、瘦身、清理电脑、code_sign_clone | 本 Skill 的 macOS 参考 |
+| 飞书 / 多工号多账号操作 | `lark-shared` / `lark-*` | 飞书、Lark、工号、profile | 严禁全局切换默认 profile，只用 `--profile` 或终端环境变量 |
 
 ## 雇主与商业项目
 
@@ -126,6 +131,7 @@ TDS 是总入口，不复制其他 Skill 的实现细节。先判断任务类型
 - 克制、安静、清楚；中性色为主，只用一个强调色。不用渐变字、玻璃拟态、装饰光球、营销式大卡片阵列。
 - 卡片只用于真正独立的内容；章节靠留白、细线和排版分组。正文行宽 65～75 字符，移动端保持单栏。
 - 支持键盘操作、减少动态效果偏好、深浅色系统偏好。路线、流程、关系做成真正有信息的图，不做装饰图。
+- 做 PPT / 汇报稿 / 销售演示稿默认走[黑曜石演示稿与暗黑发光线稿](references/obsidian-keynote-deck.md)风格，**技术栈限定使用 Slidev**，不另起其他幻灯片框架（除非明确要求 `.pptx` 等其他格式）。
 
 ## 上游开源贡献
 

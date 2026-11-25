@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 240" fill="none">
+  <style>
+    .s1{animation:spanIn 2.8s ease-in-out infinite}
+    .s2{animation:spanIn 2.8s ease-in-out infinite;animation-delay:.25s}
+    .s3{animation:spanIn 2.8s ease-in-out infinite;animation-delay:.5s}
+    .s4{animation:spanIn 2.8s ease-in-out infinite;animation-delay:.75s}
+    .ping{transform-box:fill-box;transform-origin:center;animation:pingOut 1.8s ease-out infinite}
+    .cursor{animation:sweep 2.8s linear infinite}
+    @keyframes spanIn{0%{opacity:.25}40%,85%{opacity:1}100%{opacity:.25}}
+    @keyframes pingOut{0%{transform:scale(.6);opacity:1}100%{transform:scale(2.1);opacity:0}}
+    @keyframes sweep{0%{transform:translateX(0);opacity:0}15%{opacity:.85}85%{opacity:.85}100%{transform:translateX(320px);opacity:0}}
+  </style>
+  <defs>
+    <linearGradient id="tr-card" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#18181c"/><stop offset="100%" stop-color="#0b0b0e"/></linearGradient>
+    <filter id="tr-g" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <!-- Trace Console Window -->
+  <rect x="92" y="24" width="456" height="192" rx="14" fill="url(#tr-card)" stroke="#3f3f46" stroke-width="1.3"/>
+  <line x1="92" y1="58" x2="548" y2="58" stroke="#27272a"/>
+  <!-- Window dots + header bars -->
+  <circle cx="116" cy="41" r="4" fill="#ff6900"/>
+  <circle cx="132" cy="41" r="4" fill="#3f3f46"/>
+  <circle cx="148" cy="41" r="4" fill="#3f3f46"/>
+  <rect x="172" y="37" width="110" height="8" rx="4" fill="#27272a"/>
+  <rect x="448" y="34" width="76" height="14" rx="7" fill="#ff6900" fill-opacity="0.16" stroke="#ff6900" stroke-width="1"/>
+  <!-- Vertical grid lines -->
+  <g stroke="#27272a" stroke-dasharray="3 4">
+    <line x1="196" y1="68" x2="196" y2="202"/>
+    <line x1="296" y1="68" x2="296" y2="202"/>
+    <line x1="396" y1="68" x2="396" y2="202"/>
+    <line x1="496" y1="68" x2="496" y2="202"/>
+  </g>
+  <!-- Live sweep playhead -->
+  <line class="cursor" x1="196" y1="68" x2="196" y2="202" stroke="#ff6900" stroke-width="1.4"/>
+  <!-- Left labels (abstract crisp bars) -->
+  <g fill="#52525b">
+    <rect x="114" y="84" width="58" height="7" rx="3.5"/>
+    <rect x="114" y="114" width="64" height="7" rx="3.5"/>
+    <rect x="114" y="144" width="50" height="7" rx="3.5"/>
+    <rect x="114" y="174" width="60" height="7" rx="3.5" fill="#ff8533"/>
+  </g>
+  <!-- Waterfall Spans -->
+  <rect class="s1" x="196" y="81" width="94" height="13" rx="6.5" fill="#3f3f46" stroke="#71717a" stroke-width="1"/>
+  <rect class="s2" x="268" y="111" width="118" height="13" rx="6.5" fill="#3f3f46" stroke="#a1a1aa" stroke-width="1"/>
+  <rect class="s3" x="348" y="141" width="96" height="13" rx="6.5" fill="#ff6900" fill-opacity="0.35" stroke="#ff6900" stroke-width="1.2"/>
+  <rect class="s4" x="424" y="171" width="96" height="13" rx="6.5" fill="#ff6900" filter="url(#tr-g)"/>
+  <!-- Alert pulse ring on final trace span -->
+  <circle class="ping" cx="514" cy="177.5" r="10" stroke="#ff6900" stroke-width="1.6"/>
+  <circle cx="514" cy="177.5" r="4.5" fill="#ffffff"/>
+</svg>

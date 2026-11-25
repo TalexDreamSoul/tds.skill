@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url'
 
 const assets = new URL('../assets/answer-me-with-html-plus/', import.meta.url)
 const renderer = fileURLToPath(new URL('vendor/am.mjs', assets))
-const usage = 'Usage: node answer-me-with-html-plus.mjs render <draft.md|-> -o <page.html>\n       node answer-me-with-html-plus.mjs help [sequence|flow|chart|format|...]'
+const usage = 'Usage: node answer-me-with-html-plus.mjs render <draft.md|-> -o <page.html>\n       node answer-me-with-html-plus.mjs help [sequence|flow|state|steps|api|er|class|chart|format|...]\n       node answer-me-with-html-plus.mjs --version'
 const htmlFence = '```'
 const sourceTag = '<textarea id="am-source" hidden readonly aria-hidden="true">'
 
@@ -181,6 +181,8 @@ const [, , command, input, outFlag, output, ...extras] = process.argv
 try {
   if (command === 'help') {
     process.stdout.write(runAm(['help', ...(input ? [input] : [])]))
+  } else if (command === '--version' || command === '-v') {
+    process.stdout.write(runAm(['--version']))
   } else if (!command || command === '--help') {
     console.log(usage)
   } else if (command === 'render' && input && outFlag === '-o' && output && /\.html?$/i.test(output) && extras.length === 0) {

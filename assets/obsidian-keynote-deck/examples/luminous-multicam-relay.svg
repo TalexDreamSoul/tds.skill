@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 240" fill="none">
+  <defs>
+    <linearGradient id="cone1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.18" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+    </linearGradient>
+    <linearGradient id="cone2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ff6900" stop-opacity="0.24" />
+      <stop offset="100%" stop-color="#ff6900" stop-opacity="0" />
+    </linearGradient>
+    <filter id="glow-dot" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="5" result="b" />
+      <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+    </filter>
+  </defs>
+  <!-- Ceiling track & floor corridor line -->
+  <line x1="80" y1="36" x2="560" y2="36" stroke="#27272a" stroke-width="1" />
+  <line x1="80" y1="212" x2="560" y2="212" stroke="#27272a" stroke-width="1" />
+  <!-- Left Camera Cone (Corridor - wearing coat) -->
+  <polygon points="196,46 112,212 280,212" fill="url(#cone1)" />
+  <rect x="180" y="32" width="32" height="14" rx="5" fill="#27272a" stroke="#a1a1aa" stroke-width="1.2" />
+  <circle cx="196" cy="46" r="3" fill="#ffffff" />
+  <!-- Right Camera Cone (Door - coat off, same person!) -->
+  <polygon points="444,46 360,212 528,212" fill="url(#cone2)" />
+  <rect x="428" y="32" width="32" height="14" rx="5" fill="#27272a" stroke="#ff6900" stroke-width="1.2" />
+  <circle cx="444" cy="46" r="3" fill="#ff6900" />
+  <!-- Left silhouette (wearing outer jacket) -->
+  <circle cx="196" cy="126" r="11" stroke="#e4e4e7" stroke-width="1.5" />
+  <path d="M174 176 C174 150 182 142 196 142 C210 142 218 150 218 176" fill="#27272a" stroke="#a1a1aa" stroke-width="1.4" />
+  <line x1="188" y1="176" x2="186" y2="210" stroke="#a1a1aa" stroke-width="1.5" />
+  <line x1="204" y1="176" x2="206" y2="210" stroke="#a1a1aa" stroke-width="1.5" />
+  <!-- Right silhouette (coat removed, innerwear) -->
+  <circle cx="444" cy="126" r="11" stroke="#ffffff" stroke-width="1.6" />
+  <path d="M428 174 C428 152 434 143 444 143 C454 143 460 152 460 174" fill="none" stroke="#ffffff" stroke-width="1.5" />
+  <line x1="437" y1="174" x2="435" y2="210" stroke="#a1a1aa" stroke-width="1.5" />
+  <line x1="451" y1="174" x2="453" y2="210" stroke="#a1a1aa" stroke-width="1.5" />
+  <!-- Seamless Orange Identity Continuity Arc linking both views -->
+  <path d="M214 156 Q320 112 426 156" stroke="#ff6900" stroke-width="1.8" stroke-dasharray="5 5" />
+  <circle cx="196" cy="156" r="4.5" fill="#ff6900" filter="url(#glow-dot)" />
+  <circle cx="444" cy="156" r="4.5" fill="#ff6900" filter="url(#glow-dot)" />
+</svg>
