@@ -2,13 +2,14 @@
 
 TalexDreamSoul 的全局 Agent Skill 与路由中枢。TDS 先判断任务目标、平台、动作和风险，再把任务路由到一个最小的领域 Skill；原则是先跑通真实主流程、风险进入待办、里程碑形成可回滚提交、完整整合并验证主线、少用技术、少说废话。
 
-`SKILL.md` 只留通用约束：沟通语气、工程与验证底线、资源安全与磁盘防爆（<15GB 警示与清理防爆机制、<5GB 极度受限与即用即清全生命周期回收）、Skill 路由表和触发条件、雇主/客户项目交付、长任务分批提交与图解、仓库级收敛与安全清理、管理系统默认形态、内容与视觉底线，以及部署和运维入口。详细的 UI、Logo、macOS 和发布流程由对应专项 Skill 负责，TDS 只做发现、路由和通用不变量，避免规则重复漂移。
+`SKILL.md` 只留通用约束：沟通语气、拍板盲选对质、工程与验证底线、资源安全与磁盘防爆（<15GB 警示与清理防爆机制、<5GB 极度受限与即用即清全生命周期回收）、Skill 路由表和触发条件、雇主/客户项目交付、长任务分批提交与图解、仓库级收敛与安全清理、管理系统默认形态、内容与视觉底线，以及部署和运维入口。详细的 UI、Logo、macOS 和发布流程由对应专项 Skill 负责，TDS 只做发现、路由和通用不变量，避免规则重复漂移。
 
 ## 参考
 
 按需读取：
 
 - [`references/employer-project-delivery.md`](references/employer-project-delivery.md)：雇主与商业项目的目标定义、最小真实闭环、风险待办、提醒时机和可直接转发的向上汇报话术。
+- [`references/testing-safety-net.md`](references/testing-safety-net.md)：测试体系四维统一抽象、四象限有效用例覆盖、防膨胀故障棘轮、密封闭环与防闪烁铁律、PBT/变异测试/确定性仿真按模块精准降级分流，以及 AI 出卷分权和诚实验证规范。
 - [`references/chinese-tech-writing.md`](references/chinese-tech-writing.md)：中文技术文档的句子、语气、结构、排版与数字规则，产品手册目录和文件名约定，14 条 AI 腔清单，以及 `autocorrect` 自检流程。整理自 [leter/zh-tech-writing](https://github.com/leter/zh-tech-writing)（MIT）。
 - [Answer Me with HTML Plus](references/answer-me-with-html-plus.md)：随仓库内置 Answer Me with HTML `v0.6.4` 渲染器，整合 Tuffer 多图报告约定，强调**多时序图、多架构图、多各种图与少字**；使用 Node.js 20+ 即可生成简约卡片报告、交互分步 `steps` 图解和 `scenarios` 场景切换对比。
 - [`references/obsidian-keynote-deck.md`](references/obsidian-keynote-deck.md)：黑曜石发布会风演示稿与暗黑发光线稿规范，**做 PPT / 演示稿限定使用 Slidev**，随仓库附带样式、Vue 组件模板、SVG 线稿样例和可点击 16:9 PDF 导出脚本。
